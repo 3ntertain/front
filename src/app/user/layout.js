@@ -70,8 +70,8 @@ export function NavigationBar() {
       href: "/user/claim",
     },
     {
-      label: "Friends",
-      href: "/user/friends",
+      label: "Invite",
+      href: "/user/Invite",
     },
   ]
 
@@ -122,7 +122,13 @@ export function SideBar() {
   const { user } = useAuthContext()
 
   return (
-    <Paper sx={{ borderRadius: "20px" }}>
+    <Paper
+      sx={{
+        borderRadius: "20px",
+        background: "rgba(1,1,1,0.1)",
+        backdropFilter: "blur(20px)",
+      }}
+    >
       <Box p={4} textAlign={"center"}>
         <img
           src={user.photoURL}

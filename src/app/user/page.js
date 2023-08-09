@@ -1,11 +1,12 @@
 "use client"
 import React from "react"
 import { useAuthContext } from "@/context/AuthContext"
-import { Box, Button, Grid, Paper } from "@mui/material"
+import { Box, Button, Grid, Paper, Stack, Typography } from "@mui/material"
 
 import games from "@/games.json"
 
 export default function Page() {
+  const { user } = useAuthContext()
   return (
     <Grid container spacing={2}>
       {games.map((game, index) => (
@@ -22,22 +23,32 @@ export default function Page() {
               ></Box>
 
               <Box p={2}>
-                <Button
-                  size="large"
-                  component="a"
-                  target="_blank"
-                  href={`${game.url}/?user.jwt`}
-                  variant="contained"
-                  color="primary"
-                  fullWidth
+                <Stack
+                  direction="row"
+                  justifyContent="space-between"
+                  alignItems="center"
                 >
-                  Play
-                </Button>
+                  <Typography variant="h5">{game.title}</Typography>
+                  <Button
+                    size="large"
+                    component="a"
+                    target="_blank"
+                    href={`${game.url}?${user.jwt}`}
+                    variant="contained"
+                    color="primary"
+                  >
+                    Play
+                  </Button>
+                </Stack>
               </Box>
             </Paper>
           </Box>
         </Grid>
       ))}
+
+      <Grid item xs={12}>
+        <Typography variant="h2">Live Events</Typography>
+      </Grid>
     </Grid>
   )
 }

@@ -30,8 +30,8 @@ const pages = [
     href: "/about/rewards",
   },
   {
-    label: "Referals",
-    href: "/about/referals",
+    label: "Friends",
+    href: "/about/friends",
   },
 ]
 
