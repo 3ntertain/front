@@ -3,7 +3,7 @@ import React from "react"
 import { useAuthContext } from "@/context/AuthContext"
 import { useRouter } from "next/navigation"
 
-export default function UserGuard({ children }) {
+export default function AuthGuard({ children }) {
   const { user } = useAuthContext()
   const router = useRouter()
 

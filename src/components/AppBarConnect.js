@@ -86,6 +86,7 @@ export default function AppBarConnect() {
           </Menu>
         </Box>
       )}
+
       {!user && <Button href="/connect">Connect</Button>}
     </>
   )

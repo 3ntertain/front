@@ -15,6 +15,8 @@ import Button from "@mui/material/Button"
 import Tooltip from "@mui/material/Tooltip"
 import MenuItem from "@mui/material/MenuItem"
 import LogoDevIcon from "@mui/icons-material/LogoDev"
+import ShopIcon from "@mui/icons-material/ShoppingCart"
+
 import AppBarConnect from "@/components/AppBarConnect"
 import { AuthContextProvider } from "@/context/AuthContext"
 
@@ -70,7 +72,6 @@ function ResponsiveAppBar() {
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
-              size="large"
               aria-label="account of current user"
               aria-controls="menu-appbar"
               aria-haspopup="true"
@@ -79,6 +80,7 @@ function ResponsiveAppBar() {
             >
               <MenuIcon />
             </IconButton>
+
             <Menu
               id="menu-appbar"
               anchorEl={anchorElNav}
@@ -132,6 +134,7 @@ function ResponsiveAppBar() {
               alt="3ntertain logo"
             />
           </Typography>
+
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
               <Button
@@ -145,9 +148,20 @@ function ResponsiveAppBar() {
               </Button>
             ))}
           </Box>
+
           <AuthContextProvider>
             <AppBarConnect></AppBarConnect>
           </AuthContextProvider>
+
+          <Button
+            variant="contained"
+            size="large"
+            component={Link}
+            href="/shop"
+            sx={{ ml: 2 }}
+          >
+            <ShopIcon />
+          </Button>
         </Toolbar>
       </Container>
     </AppBar>
