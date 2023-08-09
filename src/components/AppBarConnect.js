@@ -41,7 +41,6 @@ export default function AppBarConnect() {
   const handleSignout = () => {
     setAnchorElUser(null)
     signout()
-    router.push("/")
   }
 
   return (
