@@ -12,6 +12,8 @@ import {
 } from "@mui/material"
 import { DisplayAmount } from "@/components/DisplayAmount"
 import Link from "next/link"
+import { ConnectWallet } from "@/components/ConnectWallet"
+import { Web3Context } from "@/context/Web3Context"
 
 export default function Page() {
   const { user } = useAuthContext()
@@ -123,7 +125,13 @@ export default function Page() {
         </Paper>
       </Grid>
       <Grid item xs={8} md={8}>
-        <pre>{JSON.stringify(user, null, 2)}</pre>
+        <Box mt={12}>
+          <Web3Context>
+            <ConnectWallet></ConnectWallet>
+          </Web3Context>
+
+          <pre>{JSON.stringify(user, null, 2)}</pre>
+        </Box>
       </Grid>
     </Grid>
   )
