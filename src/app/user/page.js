@@ -7,39 +7,37 @@ import games from "@/games.json"
 
 export default function Page() {
   return (
-    <Box>
-      <Grid container spacing={2}>
-        {/* {games.map((game) => (
-          <Grid key={game.name} item xs={12} md={6}>
-            <Box mt={2}>
-              <Paper elevation={3}>
-                <Box
-                  sx={{
-                    backgroundImage: `url(${game.background})`,
-                    backgroundSize: "cover",
-                    backgroundPosition: "center",
-                    height: "250px",
-                  }}
-                ></Box>
+    <Grid container spacing={2}>
+      {games.map((game, index) => (
+        <Grid key={index} item xs={12} md={6}>
+          <Box>
+            <Paper elevation={3}>
+              <Box
+                sx={{
+                  backgroundImage: `url(${game.background})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                  height: "250px",
+                }}
+              ></Box>
 
-                <Box p={2}>
-                  <Button
-                    size="large"
-                    component="a"
-                    target="_blank"
-                    href={`${game.url}/?user.jwt`}
-                    variant="contained"
-                    color="primary"
-                    fullWidth
-                  >
-                    Play
-                  </Button>
-                </Box>
-              </Paper>
-            </Box>
-          </Grid>
-        ))} */}
-      </Grid>
-    </Box>
+              <Box p={2}>
+                <Button
+                  size="large"
+                  component="a"
+                  target="_blank"
+                  href={`${game.url}/?user.jwt`}
+                  variant="contained"
+                  color="primary"
+                  fullWidth
+                >
+                  Play
+                </Button>
+              </Box>
+            </Paper>
+          </Box>
+        </Grid>
+      ))}
+    </Grid>
   )
 }

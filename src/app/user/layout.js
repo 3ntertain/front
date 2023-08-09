@@ -32,15 +32,16 @@ export default function Layout({ children }) {
       <AuthContextProvider>
         <AuthGuard>
           <Grid container spacing={2}>
-            <Grid item xs={12}>
-              <NavigationBar />
-            </Grid>
+            <Grid item xs={12}></Grid>
 
             <Grid item xs={12} md={4}>
               <SideBar />
             </Grid>
             <Grid item xs={12} md={8}>
-              {children}
+              <NavigationBar />
+              <Paper elevation={0}>
+                <Box p={3}>{children}</Box>
+              </Paper>
             </Grid>
           </Grid>
         </AuthGuard>
@@ -80,9 +81,13 @@ export function NavigationBar() {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={12} md={4}></Grid>
       <Grid item xs={6}>
-        <Tabs value={currentTab}>
+        <Tabs
+          component={Paper}
+          value={currentTab}
+          variant="fullWidth"
+          elevation={2}
+        >
           {tabs.map((tab, index) => (
             <Tab
               key={index}
@@ -95,18 +100,18 @@ export function NavigationBar() {
         </Tabs>
       </Grid>
 
-      <Grid item xs={2}>
+      <Grid item xs={6}>
         <Stack
           direction={"row"}
           alignItems={"center"}
           justifyContent={"end"}
           gap={2}
         >
-          <Typography variant="h1" color={"primary"}>
+          <Typography variant="h2" color={"primary"}>
             {user.tickets}
           </Typography>
 
-          <Typography variant="h1">Tickets</Typography>
+          <Typography variant="h2">Tickets</Typography>
         </Stack>
       </Grid>
     </Grid>
@@ -118,7 +123,7 @@ export function SideBar() {
 
   return (
     <Paper sx={{ borderRadius: "20px" }}>
-      <Box p={2} textAlign={"center"}>
+      <Box p={4} textAlign={"center"}>
         <img
           src={user.photoURL}
           width={125}
