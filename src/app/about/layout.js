@@ -1,6 +1,5 @@
 import * as React from "react"
-import Container from "@mui/material/Container"
-import { Box } from "@mui/material"
+import { Container, Box } from "@mui/material"
 
 export default function Layout({ children }) {
   return (
