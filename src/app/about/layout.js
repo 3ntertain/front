@@ -1,10 +1,6 @@
 import * as React from "react"
-import { Container, Box } from "@mui/material"
+import { Container } from "@mui/material"
 
 export default function Layout({ children }) {
-  return (
-    <Container maxWidth="xl">
-      <Box py={8}>{children}</Box>
-    </Container>
-  )
+  return <Container maxWidth="xl">{children}</Container>
 }

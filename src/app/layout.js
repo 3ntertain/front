@@ -1,6 +1,7 @@
 import * as React from "react"
 import ThemeRegistry from "@/ThemeRegistry/ThemeRegistry"
 import AppBar from "@/components/AppBar"
+import { Box } from "@mui/material"
 
 export const metadata = {
   title: "3ntertain",
@@ -20,7 +21,9 @@ export default function RootLayout({ children }) {
       >
         <ThemeRegistry>
           <AppBar></AppBar>
-          <main>{children}</main>
+          <Box py={6}>
+            <main>{children}</main>
+          </Box>
         </ThemeRegistry>
       </body>
     </html>
