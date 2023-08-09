@@ -21,15 +21,15 @@ import { AuthContextProvider } from "@/context/AuthContext"
 const pages = [
   {
     label: "Games",
-    href: "/games",
+    href: "/about/games",
   },
   {
     label: "Rewards",
-    href: "/rewards",
+    href: "/about/rewards",
   },
   {
     label: "Referals",
-    href: "/referals",
+    href: "/about/referals",
   },
 ]
 

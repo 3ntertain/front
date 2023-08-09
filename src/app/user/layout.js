@@ -3,13 +3,13 @@
 import * as React from "react"
 
 import { AuthContextProvider } from "@/context/AuthContext"
-import UserGuard from "@/components/UserGuard"
+import AuthGuard from "@/context/AuthGuard"
 
 export default function Layout({ children }) {
   return (
     <>
       <AuthContextProvider>
-        <UserGuard>{children}</UserGuard>
+        <AuthGuard>{children}</AuthGuard>
       </AuthContextProvider>
     </>
   )
