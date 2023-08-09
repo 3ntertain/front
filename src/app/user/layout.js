@@ -24,10 +24,7 @@ import { AuthContextProvider, useAuthContext } from "@/context/AuthContext"
 import AuthGuard from "@/context/AuthGuard"
 import Link from "next/link"
 import { DisplayAmount } from "@/components/DisplayAmount"
-import { ConnectWallet } from "@/components/ConnectWallet"
-import { Web3Context } from "@/context/Web3Context"
-import { CopyAll, Wallet, WallpaperOutlined } from "@mui/icons-material"
-import { shortenWalletAddress } from "@/utils/address"
+import { CopyAll } from "@mui/icons-material"
 
 export default function Layout({ children }) {
   return (
@@ -43,10 +40,6 @@ export default function Layout({ children }) {
               <SideBar />
             </Grid>
             <Grid item xs={12} md={8}>
-              <Web3Context>
-                <ConnectWallet></ConnectWallet>
-              </Web3Context>
-
               {children}
             </Grid>
           </Grid>
@@ -228,19 +221,6 @@ export function SideBar() {
               </Button>
             </Box>
           </Paper>
-          {user.walletAddress && (
-            <Box pt={2}>
-              <Button variant="text" size="small" color="secondary">
-                Remove
-              </Button>
-              <Typography variant="body1" align="right">
-                {shortenWalletAddress(user.walletAddress)}
-                <Box component="span" ml={1}>
-                  <Wallet />
-                </Box>
-              </Typography>
-            </Box>
-          )}
         </Stack>
       </Box>
     </Paper>

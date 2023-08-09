@@ -2,6 +2,8 @@
 import React from "react"
 import { useAuthContext } from "@/context/AuthContext"
 import { useRouter } from "next/navigation"
+import { ConnectWallet } from "@/components/ConnectWallet"
+import { Web3Context } from "@/context/Web3Context"
 
 export default function Page() {
   const { user } = useAuthContext()
@@ -11,5 +13,11 @@ export default function Page() {
     if (user == null) router.push("/")
   }, [user])
 
-  return <h1>Rewards</h1>
+  return (
+    <>
+      <Web3Context>
+        <ConnectWallet />
+      </Web3Context>
+    </>
+  )
 }

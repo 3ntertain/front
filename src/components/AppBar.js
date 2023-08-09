@@ -159,8 +159,9 @@ function ResponsiveAppBar() {
             component={Link}
             href="/shop"
             sx={{ ml: 2 }}
+            endIcon={<ShopIcon />}
           >
-            <ShopIcon />
+            BUY TICKETS
           </Button>
         </Toolbar>
       </Container>

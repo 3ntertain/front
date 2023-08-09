@@ -54,9 +54,17 @@ export const AuthContextProvider = ({ children }) => {
     return () => unsubscribe()
   }, [])
 
-  const setUserWallet = async (walletAddress) => {
+  const setUserWallet = (walletAddress) => {
     user.walletAddress = walletAddress
-    setUser(user)
+
+    const newUser = {
+      ...user,
+      walletAddress: walletAddress,
+    }
+
+    console.log(newUser)
+
+    setUser(newUser)
   }
 
   return (
