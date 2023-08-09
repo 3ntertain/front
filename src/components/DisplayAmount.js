@@ -8,13 +8,20 @@ export const DisplayAmount = (props) => {
     if (props.small) return "inherit"
     return "h1"
   }
+
   return (
     <React.Fragment>
-      <Typography sx={{ display: "inline" }} variant={variantClass()} mr={1}>
+      <Typography
+        sx={{ display: "inline" }}
+        color={"primary"}
+        fontWeight={"bold"}
+        variant={variantClass()}
+        mr={1}
+      >
         {formatedValue()}
       </Typography>
 
-      <span>USDC</span>
+      <span>{props.currency ? props.currency : "USDC"}</span>
     </React.Fragment>
   )
 }

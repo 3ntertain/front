@@ -1,7 +1,5 @@
-import firebase_app from "./config"
+import { firebase_app } from "./config"
 import { signOut, getAuth } from "firebase/auth"
-
-const auth = getAuth(firebase_app)
 
 export default async function signout() {
   let result = null,
@@ -9,7 +7,7 @@ export default async function signout() {
 
   try {
     result = true
-    await signOut(auth)
+    await signOut(firebase_app)
     navigate("/")
   } catch (e) {
     error = e

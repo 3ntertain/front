@@ -1,38 +1,21 @@
 "use client"
 
-import React, { FC, useMemo, useEffect } from "react"
-import {
-  ConnectionProvider,
-  WalletProvider,
-} from "@solana/wallet-adapter-react"
+import React, { useEffect } from "react"
 import { WalletAdapterNetwork } from "@solana/wallet-adapter-base"
-import { UnsafeBurnerWalletAdapter } from "@solana/wallet-adapter-wallets"
 import {
   WalletDisconnectButton,
   WalletMultiButton,
 } from "@solana/wallet-adapter-react-ui"
-import { clusterApiUrl } from "@solana/web3.js"
 import { useWallet } from "@solana/wallet-adapter-react"
-
 import { Box, Paper, Typography } from "@mui/material"
+import { useAuthContext } from "@/context/AuthContext"
 
 export const ConnectWallet = (props) => {
+  const { setUserWallet } = useAuthContext()
   const { publicKey } = useWallet()
 
-  const network = WalletAdapterNetwork.Devnet
-
-  // You can also provide a custom RPC endpoint.
-  const endpoint = useMemo(() => clusterApiUrl(network), [network])
-
-  const wallets = useMemo(
-    () => [new UnsafeBurnerWalletAdapter()],
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [network]
-  )
-
   useEffect(() => {
-    console.log("ii")
-    console.log(publicKey?.toString())
+    setUserWallet(publicKey?.toString())
   }, [publicKey])
 
   return (

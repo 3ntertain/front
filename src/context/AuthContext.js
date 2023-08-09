@@ -1,8 +1,6 @@
 import React from "react"
 import { onAuthStateChanged, getAuth } from "firebase/auth"
-import firebase_app from "@/firebase/config"
-
-const auth = getAuth(firebase_app)
+import { firebase_app } from "@/firebase/config"
 
 export const AuthContext = React.createContext({})
 
@@ -13,14 +11,13 @@ export const AuthContextProvider = ({ children }) => {
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+    const unsubscribe = onAuthStateChanged(firebase_app, async (user) => {
       if (user) {
         const data = {
           uid: user.uid,
           email: user.email,
         }
 
-        // Effectuez la requête POST à l'API en utilisant fetch
         const response = await fetch(
           process.env.NEXT_PUBLIC_apiUrl + "call-user/createOrConnect",
           {
@@ -40,11 +37,7 @@ export const AuthContextProvider = ({ children }) => {
 
         const jsonData = await response.json()
 
-        // const { completeUser } = {
-        //   user,
-        //   ...{ data: jsonData },
-        // }
-
+        // TODO: Créer correctement le profil utilisateur
         const newUser = {
           photoURL: user.photoURL,
           displayName: user.displayName,
@@ -61,8 +54,13 @@ export const AuthContextProvider = ({ children }) => {
     return () => unsubscribe()
   }, [])
 
+  const setUserWallet = async (walletAddress) => {
+    user.walletAddress = walletAddress
+    setUser(user)
+  }
+
   return (
-    <AuthContext.Provider value={{ user }}>
+    <AuthContext.Provider value={{ user, setUserWallet }}>
       {loading ? <div>Loading...</div> : children}
     </AuthContext.Provider>
   )
