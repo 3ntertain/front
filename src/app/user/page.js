@@ -14,6 +14,7 @@ import { DisplayAmount } from "@/components/DisplayAmount"
 import Link from "next/link"
 import { ConnectWallet } from "@/components/ConnectWallet"
 import { Web3Context } from "@/context/Web3Context"
+import games from "@/games.json"
 
 export default function Page() {
   const { user } = useAuthContext()
@@ -129,6 +130,38 @@ export default function Page() {
           <Web3Context>
             <ConnectWallet></ConnectWallet>
           </Web3Context>
+
+          <Grid container spacing={2}>
+            {games.map((game) => (
+              <Grid key={game.name} item xs={12} md={6}>
+                <Box mt={2}>
+                  <Paper elevation={3}>
+                    <Box
+                      sx={{
+                        backgroundImage: `url(${game.background})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                        height: "250px",
+                      }}
+                    ></Box>
+                    <Box p={2}>
+                      <Button
+                        size="large"
+                        component="a"
+                        target="_blank"
+                        href={`${game.url}/?user.jwt`}
+                        variant="contained"
+                        color="primary"
+                        fullWidth
+                      >
+                        Play
+                      </Button>
+                    </Box>
+                  </Paper>
+                </Box>
+              </Grid>
+            ))}
+          </Grid>
 
           <pre>{JSON.stringify(user, null, 2)}</pre>
         </Box>
