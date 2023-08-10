@@ -24,7 +24,7 @@ import { AuthContextProvider, useAuthContext } from "@/context/AuthContext"
 import AuthGuard from "@/context/AuthGuard"
 import Link from "next/link"
 import { DisplayAmount } from "@/components/DisplayAmount"
-import { CopyAll } from "@mui/icons-material"
+import { CopyAll, Settings } from "@mui/icons-material"
 
 export default function Layout({ children }) {
   return (
@@ -141,6 +141,16 @@ export function SideBar() {
       }}
     >
       <Box p={4} textAlign={"center"}>
+        <Box sx={{ position: "absolute", top: "4px", right: "20px" }}>
+          <IconButton size="large" LinkComponent={Link} href="/user/settings">
+            <Settings
+              sx={{
+                width: "20px",
+                height: "20px",
+              }}
+            />
+          </IconButton>
+        </Box>
         <img
           src={user.photoURL}
           width={125}
@@ -161,11 +171,9 @@ export function SideBar() {
             {user.level}
           </Typography>
         </Stack>
-
         <Box py={2}>
           <LinearProgress variant="determinate" value={30} title="1000/3000" />
         </Box>
-
         <Stack direction={"column"} spacing={1}>
           <Paper elevation={0}>
             <Box py={3} px={3}>
