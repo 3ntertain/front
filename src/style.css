@@ -1,0 +1,30 @@
+.MuiButton-containedPrimary:not(.MuiButton-sizeSmall) {
+  @media (min-width: 1200px) {
+    font-size: 1.2rem !important;
+  }
+
+  &:after {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    height: 100%;
+    width: 100%;
+    background-color: #ffea00;
+    content: "";
+    z-index: -1;
+    transition: transform 0.2s ease-in, width 0.2s ease-out 0.2s;
+  }
+
+  &:hover {
+    &:after {
+      transform: translate(-5px, -5px);
+      width: calc(100% - 5px);
+    }
+  }
+
+  &:active {
+    &:after {
+      width: 100%;
+    }
+  }
+}

@@ -3,6 +3,8 @@ import ThemeRegistry from "@/ThemeRegistry/ThemeRegistry"
 import AppBar from "@/components/AppBar"
 import { Box } from "@mui/material"
 
+import "@/style.css"
+
 export const metadata = {
   title: "3ntertain",
   description: "Play and have fun",

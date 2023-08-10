@@ -39,7 +39,13 @@ export default function Layout({ children }) {
             </Grid>
             <Grid item xs={12} md={8}>
               <NavigationBar />
-              <Paper elevation={0}>
+              <Paper
+                sx={{
+                  borderRadius: "0px 0px 20px 20px",
+                  background: "rgba(1,1,1,0.1)",
+                  backdropFilter: "blur(20px)",
+                }}
+              >
                 <Box p={3}>{children}</Box>
               </Paper>
             </Grid>
@@ -87,6 +93,11 @@ export function NavigationBar() {
           value={currentTab}
           variant="fullWidth"
           elevation={2}
+          sx={{
+            borderRadius: "20px 20px 0 0",
+            background: "rgba(1,1,1,0.1)",
+            backdropFilter: "blur(20px)",
+          }}
         >
           {tabs.map((tab, index) => (
             <Tab
@@ -224,7 +235,7 @@ export function SideBar() {
 
               <Button
                 variant="text"
-                color="primary"
+                color="secondary"
                 component={Link}
                 href="/about/referals"
               >

@@ -12,7 +12,7 @@ export default function Page() {
       {games.map((game, index) => (
         <Grid key={index} item xs={12} md={6}>
           <Box>
-            <Paper elevation={3}>
+            <Paper elevation={0}>
               <Box
                 sx={{
                   backgroundImage: `url(${game.background})`,
