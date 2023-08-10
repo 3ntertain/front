@@ -24,6 +24,7 @@
     "firebase": "^10.1.0",
     "next": "13.x",
     "react": "18.x",
+    "react-countdown": "^2.3.5",
     "react-dom": "18.x"
   },
   "devDependencies": {

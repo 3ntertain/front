@@ -4,9 +4,11 @@ import { useAuthContext } from "@/context/AuthContext"
 import { Box, Button, Grid, Paper, Stack, Typography } from "@mui/material"
 
 import games from "@/games.json"
+import EventTable from "@/components/EventTable"
 
 export default function Page() {
   const { user } = useAuthContext()
+
   return (
     <Grid container spacing={2}>
       {games.map((game, index) => (
@@ -47,7 +49,10 @@ export default function Page() {
       ))}
 
       <Grid item xs={12}>
-        <Typography variant="h2">Live Events</Typography>
+        <Typography variant="h4" mt={3} mb={2}>
+          Live Events
+        </Typography>
+        <EventTable />
       </Grid>
     </Grid>
   )
