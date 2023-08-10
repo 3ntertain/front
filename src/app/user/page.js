@@ -49,9 +49,6 @@ export default function Page() {
       ))}
 
       <Grid item xs={12}>
-        <Typography variant="h4" mt={3} mb={2}>
-          Live Events
-        </Typography>
         <EventTable />
       </Grid>
     </Grid>

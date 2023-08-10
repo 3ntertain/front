@@ -5,7 +5,6 @@ import TableCell from "@mui/material/TableCell"
 import TableContainer from "@mui/material/TableContainer"
 import TableHead from "@mui/material/TableHead"
 import TableRow from "@mui/material/TableRow"
-import Paper from "@mui/material/Paper"
 import { Typography } from "@mui/material"
 import { DisplayAmount } from "./DisplayAmount"
 import Countdown from "react-countdown"
@@ -45,11 +44,19 @@ const events = [
 
 export default function EventTable() {
   return (
-    <TableContainer component={Paper}>
+    <TableContainer>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead sx={{ fontWeight: "bold" }}>
-          <TableRow>
-            <TableCell>Event</TableCell>
+        <TableHead>
+          <TableRow
+            sx={{
+              "& th": { borderBottom: "1px solid white" },
+            }}
+          >
+            <TableCell>
+              <Typography variant="h4" display={"inline"}>
+                Live Events
+              </Typography>
+            </TableCell>
             <TableCell align="right" width={"200px"}>
               Ends in
             </TableCell>
@@ -62,9 +69,12 @@ export default function EventTable() {
           {events.map((event) => (
             <TableRow
               key={event.title}
-              sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              sx={{
+                "& td": { borderBottom: "1px solid white" },
+                "&:last-child td, &:last-child th": { border: 0 },
+              }}
             >
-              <TableCell component="th" scope="row">
+              <TableCell>
                 {event.game} | {event.title}
               </TableCell>
               <TableCell align="right">
