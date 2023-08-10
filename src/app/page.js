@@ -1,6 +1,16 @@
 import * as React from "react"
-import Box from "@mui/material/Box"
+import { Box, Container } from "@mui/material/"
 
 export default function HomePage() {
-  return <Box>dd</Box>
+  return (
+    <Container maxWidth="xl">
+      <Box pt={10} textAlign="center">
+        <img
+          src="/images/logo/3ntertain-logo.png"
+          alt="3ntertain logo"
+          style={{ width: "80%", maxWidth: "800px" }}
+        />
+      </Box>
+    </Container>
+  )
 }
