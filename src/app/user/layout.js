@@ -71,7 +71,7 @@ export function NavigationBar() {
     },
     {
       label: "Invite",
-      href: "/user/Invite",
+      href: "/user/invite",
     },
   ]
 
