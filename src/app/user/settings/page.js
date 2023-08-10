@@ -3,6 +3,7 @@ import React from "react"
 import { useAuthContext } from "@/context/AuthContext"
 import { Box, Button, Paper, Stack, TextField, Typography } from "@mui/material"
 import { Logout } from "@mui/icons-material"
+import signOut from "@/firebase/signout"
 
 export default function Page() {
   const { user } = useAuthContext()
@@ -40,7 +41,12 @@ export default function Page() {
         </Box>
       </Paper>
       <Box align={"right"}>
-        <Button variant="outlined" color="secondary" endIcon={<Logout />}>
+        <Button
+          onClick={signOut}
+          variant="outlined"
+          color="secondary"
+          endIcon={<Logout />}
+        >
           Logout
         </Button>
       </Box>
