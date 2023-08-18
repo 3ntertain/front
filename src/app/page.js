@@ -10,6 +10,7 @@ export default function HomePage() {
           alt="3ntertain logo"
           style={{ width: "80%", maxWidth: "800px" }}
         />
+        Let's play!
       </Box>
     </Container>
   )
