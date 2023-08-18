@@ -91,6 +91,22 @@ export default function Page() {
       {user?.id}
       <Typography variant="h1">{game?.title}</Typography>
 
+      <Box my={5} textAlign={"center"}>
+        <Button
+          variant="contained"
+          color="primary"
+          LinkComponent={"a"}
+          target="_blank"
+          href={`${game?.url}?p3n=${user?.uid}`}
+        >
+          Play
+        </Button>
+      </Box>
+
+      <Box>
+        <Typography variant="h2">Events</Typography>
+      </Box>
+
       <Stack direction="column" spacing={2} mt={8}>
         {eventsWithAccesses().map((event, index) => (
           <Paper key={index}>
