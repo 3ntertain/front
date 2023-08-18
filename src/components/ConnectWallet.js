@@ -26,74 +26,83 @@ export const ConnectWallet = (props) => {
   }
 
   return (
-    <Paper
-      elevation={5}
+    <Box
+      p={1}
       sx={{
-        backgroundImage: `url(/images/background-solana.jpg)`,
-        borderRadius: "0px",
-        backgroundSize: "cover",
-        color: "black",
+        background: "rgba(255, 255, 255, 0.3)",
+        borderRadius: "27px",
       }}
     >
-      <Box p={5}>
-        {!user.walletAddress && (
-          <>
-            <Typography variant="h2" mb={1}>
-              Connect a Solana Wallet
-            </Typography>
-            <Typography variant="body1">
-              To earn rewards, you need to connect a Solana wallet.
-            </Typography>
-            <Typography variant="body1">
-              Don't have one?{" "}
-              <a
-                href="https://phantom.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Create one in 2 minutes
-              </a>
-            </Typography>
-            <Box mt={2}>
-              {!publicKey && <WalletMultiButton />}
+      <Paper
+        elevation={1}
+        sx={{
+          backgroundImage: `url(/images/background-solana.jpg)`,
 
-              {publicKey && (
-                <>
-                  <Typography variant="h4" mb={1}>
-                    {publicKey.toString()}
-                  </Typography>
-                  <WalletDisconnectButton />
-                </>
-              )}
-            </Box>
-          </>
-        )}
+          backgroundSize: "cover",
+          color: "#5b4176",
+          borderRadius: "20px",
+        }}
+      >
+        <Box p={4}>
+          {!user.walletAddress && (
+            <>
+              <Typography variant="h2" mb={1}>
+                Connect a Solana Wallet
+              </Typography>
+              <Typography variant="body1">
+                To earn rewards, you need to connect a Solana wallet.
+              </Typography>
+              <Typography variant="body1">
+                Don't have one?{" "}
+                <a
+                  href="https://phantom.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Create one in 2 minutes
+                </a>
+              </Typography>
+              <Box mt={2}>
+                {!publicKey && <WalletMultiButton />}
 
-        {user.walletAddress && (
-          <>
-            <Typography variant="h2" mb={1}>
-              <Wallet mr={2} />
-              Your Wallet: {shortenWalletAddress(user.walletAddress)}
-            </Typography>
+                {publicKey && (
+                  <>
+                    <Typography variant="h4" mb={1}>
+                      {publicKey.toString()}
+                    </Typography>
+                    <WalletDisconnectButton />
+                  </>
+                )}
+              </Box>
+            </>
+          )}
 
-            <Typography variant="body1">
-              Rewards you claim and earning from your friends are sent to this
-              wallet.
-            </Typography>
+          {user.walletAddress && (
+            <>
+              <Typography variant="h2" mb={1}>
+                <Wallet mr={2} />
+                Your Wallet: {shortenWalletAddress(user.walletAddress)}
+              </Typography>
 
-            <Box mt={2}>
-              <Button
-                variant="outlined"
-                size="small"
-                color="secondary"
-                onClick={removeWallet}
-              >
-                Remove
-              </Button>
-            </Box>
-          </>
-        )}
-      </Box>
-    </Paper>
+              <Typography variant="body1">
+                Rewards you claim and earning from your friends are sent to this
+                wallet.
+              </Typography>
+
+              <Box mt={2}>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  color="secondary"
+                  onClick={removeWallet}
+                >
+                  Remove
+                </Button>
+              </Box>
+            </>
+          )}
+        </Box>
+      </Paper>
+    </Box>
   )
 }

@@ -1,9 +1,10 @@
 import React from "react"
-import { onAuthStateChanged, getAuth } from "firebase/auth"
-import { firebase_app } from "@/firebase/config"
+import { onAuthStateChanged } from "firebase/auth"
+import { auth } from "@/firebase/config"
+import { doc, onSnapshot, getDoc } from "firebase/firestore"
+import { db } from "@/firebase/config"
 
 export const AuthContext = React.createContext({})
-
 export const useAuthContext = () => React.useContext(AuthContext)
 
 export const AuthContextProvider = ({ children }) => {
@@ -11,40 +12,37 @@ export const AuthContextProvider = ({ children }) => {
   const [loading, setLoading] = React.useState(true)
 
   React.useEffect(() => {
-    const unsubscribe = onAuthStateChanged(firebase_app, async (user) => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
-        const data = {
+        setUser({
           uid: user.uid,
-          email: user.email,
+        })
+
+        const docRef = doc(db, "users", user.uid)
+        const docSnap = await getDoc(docRef)
+
+        if (docSnap.exists()) {
+          setUser({
+            uid: user.uid,
+            email: user.email,
+            avatar: user.photoURL
+              ? user.photoURL
+              : "/images/logo/3ntertain-logo-square.jpg",
+            ...docSnap.data(),
+          })
+        } else {
         }
 
-        const response = await fetch(
-          process.env.NEXT_PUBLIC_apiUrl + "call-user/createOrConnect",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              // Vous pouvez également ajouter des en-têtes d'authentification si nécessaire
-            },
-            body: JSON.stringify(data),
-          }
-        )
-
-        // Vérifiez si la réponse est ok (statut 200-299)
-        if (!response.ok) {
-          throw new Error("La requête a échoué")
-        }
-
-        const jsonData = await response.json()
-
-        // TODO: Créer correctement le profil utilisateur
-        const newUser = {
-          photoURL: user.photoURL,
-          displayName: user.displayName,
-          ...jsonData,
-        }
-
-        setUser(newUser)
+        onSnapshot(doc(db, "users", user.uid), (doc) => {
+          setUser({
+            uid: user.uid,
+            email: user.email,
+            avatar: user.photoURL
+              ? user.photoURL
+              : "/images/logo/3ntertain-logo-square.jpg",
+            ...doc.data(),
+          })
+        })
       } else {
         setUser(null)
       }
@@ -54,21 +52,8 @@ export const AuthContextProvider = ({ children }) => {
     return () => unsubscribe()
   }, [])
 
-  const setUserWallet = (walletAddress) => {
-    user.walletAddress = walletAddress
-
-    const newUser = {
-      ...user,
-      walletAddress: walletAddress,
-    }
-
-    console.log(newUser)
-
-    setUser(newUser)
-  }
-
   return (
-    <AuthContext.Provider value={{ user, setUserWallet }}>
+    <AuthContext.Provider value={{ user }}>
       {loading ? <div>Loading...</div> : children}
     </AuthContext.Provider>
   )

@@ -90,7 +90,7 @@ export function NavigationBar() {
       <Grid item xs={6}>
         <Tabs
           component={Paper}
-          value={currentTab}
+          value={currentTab >= 0 ? currentTab : false}
           variant="fullWidth"
           elevation={2}
           sx={{
@@ -152,7 +152,7 @@ export function SideBar() {
           </IconButton>
         </Box>
         <img
-          src={user.photoURL}
+          src={user.avatar}
           width={125}
           height={125}
           style={{ marginTop: "-80px", borderRadius: "50%" }}
@@ -164,11 +164,11 @@ export function SideBar() {
           alignItems={"center"}
           mt={2}
         >
-          <Typography variant="h2">{user.displayName}</Typography>
+          <Typography variant="h2">{user.pseudo}</Typography>
           <Typography variant="h2">•</Typography>
           <Typography variant="h2">LVL</Typography>
           <Typography variant="h2" color={"primary"}>
-            {user.level}
+            1{user.level}
           </Typography>
         </Stack>
         <Box py={2}>
@@ -181,7 +181,7 @@ export function SideBar() {
                 Total Earnings
               </Typography>
 
-              <DisplayAmount value={12.8} />
+              <DisplayAmount value={122} />
 
               <Box pt={2}>
                 <TableContainer>
@@ -190,13 +190,13 @@ export function SideBar() {
                       <TableRow>
                         <TableCell>
                           <DisplayAmount
-                            value={3}
+                            value={87}
                             small
                             currency="Events Played"
                           />
                         </TableCell>
                         <TableCell align={"right"}>
-                          <DisplayAmount value={8.2} small />
+                          <DisplayAmount value={80} small />
                         </TableCell>
                       </TableRow>
 
@@ -207,13 +207,13 @@ export function SideBar() {
                       >
                         <TableCell>
                           <DisplayAmount
-                            value={6}
+                            value={14}
                             small
                             currency="Friends Invited"
                           />
                         </TableCell>
                         <TableCell align={"right"}>
-                          <DisplayAmount value={4.6} small />
+                          <DisplayAmount value={42} small />
                         </TableCell>
                       </TableRow>
                     </TableBody>

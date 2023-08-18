@@ -6,8 +6,6 @@ import { Logout } from "@mui/icons-material"
 import signOut from "@/firebase/signout"
 
 export default function Page() {
-  const { user } = useAuthContext()
-
   return (
     <Stack spacing={2}>
       <Typography variant="h3">User Settings</Typography>

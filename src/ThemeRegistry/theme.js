@@ -1,6 +1,6 @@
 import { Montserrat } from "next/font/google"
 import { createTheme } from "@mui/material/styles"
-import { pink, grey, amber, common, orange } from "@mui/material/colors"
+import { pink } from "@mui/material/colors"
 
 export const montserrat = Montserrat({
   weight: ["300", "500", "900"],
@@ -26,7 +26,7 @@ const theme = createTheme({
   typography: {
     fontFamily: montserrat.style.fontFamily,
     fontWeightBold: 900,
-    fontSize: "1.2rem",
+    fontSize: 16,
     h1: {
       fontSize: "2.5rem",
       fontWeight: 900,

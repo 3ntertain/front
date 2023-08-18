@@ -1,13 +1,28 @@
 "use client"
-import React from "react"
-import { useAuthContext } from "@/context/AuthContext"
+import React, { useEffect, useState } from "react"
 import { Box, Button, Grid, Paper, Stack, Typography } from "@mui/material"
-
-import games from "@/games.json"
-import EventTable from "@/components/EventTable"
+import { collection, getDocs } from "firebase/firestore"
+import { db } from "@/firebase/config"
+import Link from "next/link"
 
 export default function Page() {
-  const { user } = useAuthContext()
+  const [games, setGames] = useState([])
+
+  useEffect(() => {
+    ;(async () => {
+      const querySnapshot = await getDocs(collection(db, "games"))
+
+      setGames([])
+
+      querySnapshot.forEach((doc) => {
+        const game = {
+          id: doc.id,
+          ...doc.data(),
+        }
+        setGames((current) => [...current, game])
+      })
+    })()
+  }, [])
 
   return (
     <Grid container spacing={2}>
@@ -33,9 +48,8 @@ export default function Page() {
                   <Typography variant="h5">{game.title}</Typography>
                   <Button
                     size="large"
-                    component="a"
-                    target="_blank"
-                    href={`${game.url}?${user.jwt}`}
+                    component={Link}
+                    href={`/user/games/${game.id}`}
                     variant="contained"
                     color="primary"
                   >
@@ -47,10 +61,6 @@ export default function Page() {
           </Box>
         </Grid>
       ))}
-
-      <Grid item xs={12}>
-        <EventTable />
-      </Grid>
     </Grid>
   )
 }
