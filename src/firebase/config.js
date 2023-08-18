@@ -22,8 +22,14 @@ const auth = getAuth(app)
 const db = getFirestore()
 
 // if (window.location.hostname === "localhost") {
-connectAuthEmulator(auth, "http://127.0.0.1:9099")
-connectFirestoreEmulator(db, "127.0.0.1", 5002)
+// connectAuthEmulator(auth, "http://127.0.0.1:9099")
+// connectFirestoreEmulator(db, "127.0.0.1", 5002)
 // }
+
+// if development, use emulator
+if (process.env.NODE_ENV === "development") {
+  connectAuthEmulator(auth, "http://localhost:9099")
+  connectFirestoreEmulator(db, "localhost", 5002)
+}
 
 export { app, auth, db }
